@@ -11,6 +11,7 @@ import torch
 import matplotlib.pyplot as plt
 import torch.nn.functional as F
 import torch.optim as optim
+import csv
 
 from torch import nn
 from torch.utils.data import DataLoader
@@ -18,29 +19,30 @@ from torchvision import transforms, utils, datasets
 
 from batchnorm import CustomBatchNorm2D
 
-# Ignore warnings
-# import warnings
-# warnings.filterwarnings("ignore")
-
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 print("Running the code on {}".format(device))
 
-data_transform = transforms.Compose([
-    transforms.RandomResizedCrop(64),
-    transforms.RandomHorizontalFlip(),
-    transforms.ColorJitter(hue=.05, saturation=.05),
-    transforms.RandomRotation(20),
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                         std=[0.229, 0.224, 0.225])
-])
+# data_transform = transforms.Compose([
+#     transforms.RandomResizedCrop(64),
+#     transforms.RandomHorizontalFlip(),
+#     transforms.ColorJitter(hue=.05, saturation=.05),
+#     transforms.RandomRotation(20),
+#     transforms.ToTensor(),
+#     transforms.Normalize(mean=[0.485, 0.456, 0.406],
+#                          std=[0.229, 0.224, 0.225])
+# ])
 
-# data_transform = transforms.ToTensor()
+data_transform = transforms.ToTensor()
 train_dataset = datasets.ImageFolder(root='trainset',
                                      transform=data_transform)
+validation_dataset = datasets.ImageFolder(root='validationset',
+                                          transform=data_transform)
+
 train_loader = DataLoader(train_dataset,
-                          batch_size=128, shuffle=True,
+                          batch_size=4, shuffle=True,
                           num_workers=4)
+validation_loader = DataLoader(
+    validation_dataset, batch_size=4, num_workers=4)
 
 
 def conv3x3(in_maps, out_maps, stride=1):
@@ -52,6 +54,27 @@ def conv3x3(in_maps, out_maps, stride=1):
 def conv1x1(in_maps, out_maps, stride=1):
     """1x1 convolution"""
     return nn.Conv2d(in_maps, out_maps, kernel_size=1, stride=stride, bias=False)
+
+
+class ImageFolderWithPaths(datasets.ImageFolder):
+    """Custom dataset that includes image file paths. Extends
+    torchvision.datasets.ImageFolder
+    """
+
+    # override the __getitem__ method. this is the method dataloader calls
+    def __getitem__(self, index):
+        # this is what ImageFolder normally returns
+        original_tuple = super(ImageFolderWithPaths, self).__getitem__(index)
+        # the image file path
+        path = self.imgs[index][0]
+        # make a new tuple that includes original and the path
+        tuple_with_path = (original_tuple + (path,))
+        return tuple_with_path
+
+
+test_dataset = ImageFolderWithPaths(
+    root='testset', transform=data_transform)
+test_loader = DataLoader(test_dataset, batch_size=4, num_workers=4)
 
 
 class ResNetBlock(nn.Module):
@@ -106,7 +129,7 @@ class ResNetBlock(nn.Module):
         out = self.conv2(out)
         out = self.bn2(out)
 
-        # Downsample x if it the number of in and out feature maps are not same
+        # Downsample x if the number of in and out feature maps are not same
         # for this block
         if self.in_maps != self.out_maps:
             identity = self.downsample(identity)
@@ -166,7 +189,6 @@ class ResNet(nn.Module):
                 block, self.in_maps, self.out_maps, num_stages))
             self.in_maps = self.out_maps
             self.out_maps *= 2
-        print([k for k in self.stage])
 
         # Average the over the values of each feature map
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
@@ -200,36 +222,105 @@ class ResNet(nn.Module):
         return x
 
 
-epochs = 10
-# Follows an architrcture similar to ResNet18
-model = ResNet(ResNetBlock, [2, 2, 2, 2])
-model = model.to(device)
-print(model)
-criterion = nn.CrossEntropyLoss()
-optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
+def train(epochs, model, criterion, optimizer):
+    """Train the model
+    """
+    train_loss = []
+    val_loss = []
+    for epoch in range(1, epochs+1):
+        print("Epoch {}/{}".format(epoch, epochs))
+        for phase in ['train', 'validate']:
+            # Iterate over the training set learn the model params
+            if phase == 'train':
+                model.train()
+                running_loss = []
+                for idx, data in enumerate(train_loader):
+                    # Get the inputs
+                    inputs, labels = data
 
-for epoch in range(epochs):
-    running_loss = []
-    for idx, data in enumerate(train_loader, 0):
-        # Get the inputs
-        inputs, labels = data
+                    # Zero the gradients
+                    optimizer.zero_grad()
 
-        # Zero the gradients
-        optimizer.zero_grad()
+                    # Generate outputs
+                    outputs = model(inputs.to(device))
 
-        # Generate outputs
-        outputs = model(inputs.to(device))
+                    # Calculate loss
+                    loss = criterion(outputs, labels.to(device))
 
-        # Calculate loss
-        loss = criterion(outputs, labels.to(device))
+                    # appending the loss to list containing current losses
+                    running_loss.append(loss)
 
-        # Calculate the gradient of parameter w.r.t loss
-        loss.backward()
+                    # Calculate the gradient of parameter w.r.t loss
+                    loss.backward()
 
-        # Update the parameters
-        optimizer.step()
+                    # Update the parameters
+                    optimizer.step()
 
-        if idx % 1 == 0:
-            print("Epoch {} batch {} loss {}".format(epoch, idx, loss))
+                    print("Epoch {} batch {} loss {}".format(
+                        epoch, idx, loss))
 
-torch.save(model.state_dict(), './model/resnet18.pt')
+                train_loss.append(torch.FloatTensor(running_loss).mean())
+                print("Train error in epoch {}: {}".format(
+                    epoch, train_loss[-1]))
+                torch.save(model.state_dict(), './model/resnet18.pt')
+
+            # Evaluate the performance of the trained model on the validation set
+            elif phase == 'validate':
+                model.eval()
+                running_loss = []
+                for idx, data in enumerate(validation_loader):
+                    # Get the inputs
+                    inputs, labels = data
+
+                    # Generate outputs
+                    outputs = model(inputs.to(device))
+
+                    # Calculate loss
+                    loss = criterion(outputs, labels.to(device))
+
+                    # appending the loss to list containing current losses
+                    running_loss.append(loss)
+
+                val_loss.append(torch.FloatTensor(running_loss).mean())
+                print("Validation error in epoch {}: {}".format(
+                    epoch, val_loss[-1]))
+
+    return model
+
+
+def test(model=None):
+    """Evaluate the model on the test set
+    """
+    model.eval()
+    predictions = [['id', 'label']]
+    for data in test_loader:
+        inputs, _, paths = data
+        ids = [path.split("/")[-1].split(".")[0] for path in paths]
+
+        outputs = model(inputs)
+
+        outputs = ['Cat' if output == 0 else 'Dog' for output in outputs]
+
+        predictions.extend([[_id, output] for _id, output in zip(ids, output)])
+
+    print(predictions)
+    with open('predictions.csv', 'w') as fp:
+        writer = csv.writer(fp)
+        writer.writerows(predictions)
+
+
+def main():
+    epochs = 1
+    # Follows an architrcture similar to ResNet18
+    model = ResNet(ResNetBlock, [2, 2, 2, 2])
+    model = model.to(device)
+    print(model)
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
+    model = train(epochs, model, criterion, optimizer)
+    test(model)
+    # test()
+
+
+if __name__ == '__main__':
+    main()
