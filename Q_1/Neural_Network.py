@@ -2,9 +2,9 @@
 import numpy as np
 import os, sys
 import time
+import pickle
 
 import Utilities as utils
-
 
 
 # Define a class to hold the neural network
@@ -274,6 +274,8 @@ class multiLayerPerceptron(object):
 		if not is_retain_graph :
 			self.grad_preactivation_dict.clear()
 			self.grad_activation_dict.clear()
+			self.grad_weights_dict.clear()
+			self.grad_biases_dict.clear()
 
 			# Evaluate the backward pass
 			l = len(self.weights_dict) # It is going to be n_hidden + 1
@@ -292,13 +294,13 @@ class multiLayerPerceptron(object):
 			# Loop over the layers
 			for i in range(l, 0, -1) : # Goes till 1
 				# Weight gradient 
-				self.grad_weights_dict['grad_W' + str(i)] = normalizer * np.matmul(self.grad_preactivation_dict['grad_a' + str(i)], np.transpose(self.activation_dict['h' + str(i - 1)])) # Using standard formula
+				self.grad_weights_dict['grad_W' + str(i)] = np.copy( normalizer * np.matmul(self.grad_preactivation_dict['grad_a' + str(i)], np.transpose(self.activation_dict['h' + str(i - 1)])) ) # Using standard formula
 				# Bias gradient
-				self.grad_biases_dict['grad_b' + str(i)] = np.reshape(np.mean(self.grad_preactivation_dict['grad_a' + str(i)], axis = 1), [-1, 1])
+				self.grad_biases_dict['grad_b' + str(i)] = np.copy( np.reshape(np.mean(self.grad_preactivation_dict['grad_a' + str(i)], axis = 1), [-1, 1]) )
 				# Activation gradient
-				self.grad_activation_dict['grad_h' + str(i - 1)] = np.matmul(np.transpose(self.GetWeight(i)), self.grad_preactivation_dict['grad_a' + str(i)])
+				self.grad_activation_dict['grad_h' + str(i - 1)] = np.copy( np.matmul(np.transpose(self.GetWeight(i)), self.grad_preactivation_dict['grad_a' + str(i)]) )
 				# Preactivation gradient 
-				self.grad_preactivation_dict['grad_a' + str(i - 1)] = self.grad_activation_dict['grad_h' + str(i - 1)] * utils.GetPointwiseGradientOfNonLinearity(self.preactivation_dict['a' + str(i - 1)], self.GetNonLinearity(i - 1)[0])
+				self.grad_preactivation_dict['grad_a' + str(i - 1)] = np.copy (self.grad_activation_dict['grad_h' + str(i - 1)] * utils.GetPointwiseGradientOfNonLinearity(self.preactivation_dict['a' + str(i - 1)], self.GetNonLinearity(i - 1)[0]) )
 
 		# Else, only add to the current gradients
 		else :
@@ -477,11 +479,11 @@ class multiLayerPerceptron(object):
 			iteration_count = 0
 
 			# For each epoch ...
-			data_loader.ResetDataSplit('Train')
+			data_loader.ResetDataSplit(split = 'Train')
 			iteration_tr_acc_list = []
 			iteration_tr_loss_list = []
 
-			while data_loader.IsNextBatchExists() :
+			while data_loader.IsNextBatchExists(split = 'Train') :
 				
 				iteration_count += 1
 				# Get the next batch
@@ -500,14 +502,14 @@ class multiLayerPerceptron(object):
 				iteration_tr_acc_list.append(acc_batch)
 				iteration_tr_loss_list.append(loss_batch)
 
-				if is_verbose :
-					print('[DEBUG] Epoch :\t', trigger_stop_training + 1, '\t\tIteration : ', iteration_count)
+				# if is_verbose :
+				# 	print('[DEBUG] Epoch :\t', trigger_stop_training + 1, '\t\tIteration : ', iteration_count)
 
 			tr_loss_list.append(iteration_tr_loss_list)
 			tr_acc_list.append(iteration_tr_acc_list)
 
 			# After each epoch, calculate the validation performance
-			x_val_batch, y_val_batch = data_loader.GetDataSplit('Validation')
+			x_val_batch, y_val_batch = data_loader.GetDataSplit('Test')
 			pred_val = self.forward(np.transpose(x_val_batch))
 			loss_val = self.loss(y_true = y_val_batch)
 			acc_val, corr_val = self.EvaluateAccuracy(y_true = y_val_batch)
@@ -515,14 +517,15 @@ class multiLayerPerceptron(object):
 			val_loss_list.append(loss_val)
 
 			# Verbose
-			print('[INFO] Epoch :\t', trigger_stop_training + 1)
-			print('[INFO] Training Loss :\t', loss_batch, '\tTraining Acc :\t', acc_batch)
-			print('[INFO] Validation Loss :\t', loss_val, '\tValidation Acc :\t', acc_val)
+			if is_verbose :
+				print('[INFO] Epoch :\t', trigger_stop_training + 1)
+				print('[INFO] Training Loss :\t', loss_batch, '\tTraining Acc :\t', acc_batch)
+				print('[INFO] Validation Loss :\t', loss_val, '\tValidation Acc :\t', acc_val)
 
 			# Re-evaluate the criterion for stopping
 			if stopping_criterion == 'Epochs' :
 				trigger_stop_training += 1
-				if trigger_stop_training > threshold_stop_training :
+				if trigger_stop_training >= threshold_stop_training :
 					is_continue_training = False
 				else :
 					is_continue_training = True
@@ -579,6 +582,225 @@ class multiLayerPerceptron(object):
 		acc, corr = self.EvaluateAccuracy(y_true = y_test)
 
 		return loss, acc, corr
+
+
+	# Define a method for saving weights upon command, storing the weights and biases
+	def SaveModel(self, path) :
+
+		"""
+		inputs :
+
+		path :
+			The path to which the weights need to be saved
+		"""
+
+		"""
+		outputs :
+		"""
+
+		# Create a dict of weights and biases
+		weights_saver_dict = {}
+		biases_saver_dict = {}
+
+		for i in self.weights_dict :
+			weights_saver_dict[i] = np.copy(self.weights_dict[i])
+		for i in self.biases_dict :
+			biases_saver_dict[i] = np.copy(self.biases_dict[i])
+
+		# Remove if previous snapshot
+		os.system('rm -f ' + str(os.path.join(path, 'weights_dict.pkl')) + '   ' + os.path.join(path, 'biases_dict.pkl'))
+
+		# Dump to pickle
+		with open(os.path.join(path, 'weights_dict.pkl'), 'wb') as weights_saver :
+			pickle.dump(weights_saver_dict, weights_saver, protocol = pickle.HIGHEST_PROTOCOL)
+		with open(os.path.join(path, 'biases_dict.pkl'), 'wb') as biases_saver :
+			pickle.dump(biases_saver_dict, biases_saver, protocol = pickle.HIGHEST_PROTOCOL)
+
+
+	# Define a method for loading saved weights upon command
+	def LoadModel(self, path) :
+
+		"""
+		inputs :
+
+		path :
+			The path to which the weights need to be saved
+		"""
+
+		"""
+		outputs :
+		"""
+
+		# Load from pickle
+		with open(os.path.join(path, 'weights_dict.pkl'), 'rb') as weights_loader :
+			weights_loader_dict = pickle.load(weights_loader)
+		with open(os.path.join(path, 'biases_dict.pkl'), 'rb') as biases_loader :
+			biases_loader_dict = pickle.load(biases_loader)
+
+		for i in weights_loader_dict :
+			self.weights_dict[i] = np.copy(weights_loader_dict[i])
+		for i in biases_loader_dict :
+			self.biases_dict[i] = np.copy(biases_loader_dict[i])
+
+
+	# Define a method to compute numerical gradients with respect to parameters of a particular layer
+	def ComputeNumericalGradients(self, x, y, parameter, perturb_loc, perturb_amount) :
+
+		"""
+		inputs :
+
+		x :
+			The input on which numerical gradient needs to be evaluated
+		y :
+			The ground truth corresponding to the input data
+		parameter :
+			The parameter for which the numerical gradient needs to be evaluated. EX : 'W1', 'b2' etc.
+		perturb_loc :
+			The location in the weight/bias where we need to perturb
+		perturb_amount : 
+			The magnitude with which to perturb
+		"""
+
+		"""
+		outputs :
+
+		left_deriv :
+			The left-sided derivative (f(x) - f(x - eps))/(eps)
+		right_deriv :
+			The right-sided derivative (f(x + eps) - f(x))/(eps)
+		center_deriv :
+			The centered derivative (f(x + eps) - f(x - eps))/(2*eps)
+		"""
+
+		# print('[DEBUG] Parameter : ', parameter)
+		# for i in self.weights_dict :
+		# 	print('[DEBUG] Weights : ', i)
+		# for i in self.biases_dict :
+		# 	print('[DEBUG] Biases : ', i)
+
+		# print('[DEBUG] True Label : ', y)
+
+		# Save the current param
+		if 'W' in parameter :
+			current_param = np.copy(self.weights_dict[parameter])
+		elif 'b' in parameter :
+			current_param = np.copy(self.biases_dict[parameter])
+		# No code should ever reach here ...
+		else :
+			print('[ERROR] Wrong parameter enquired : ', str(parameter))
+			print('[ERROR] Terminating the code ...')
+			sys.exit()
+
+		# Get the perturbation
+		perturbation = np.zeros_like(current_param).astype(np.float32)
+		perturbation[perturb_loc[0], perturb_loc[1]] = np.abs(perturb_amount)
+		
+		# print('[DEBUG] Perturbation : ', (perturbation == 0).all())
+		# print('[DEBUG] Perturbation[i, j] : ', perturbation[perturb_loc[0], perturb_loc[1]])
+		# print('[DEBUG] Perturbation : ', (perturbation == 0).all())
+		# print('[DEBUG] Perturbation Max : ', np.max(perturbation))
+
+		pos_perturbed_param = current_param + perturbation
+		neg_perturbed_param = current_param - perturbation
+
+		# Get the loss with the parameter
+		pred_center = self.forward(x = x)
+		loss_center = self.loss(y_true = y, y_pred = pred_center)
+		# print('[DEBUG] Center Prediction : ', pred_center)
+		# print('[DEBUG] Center Loss : ', loss_center)
+
+		# Set the parameter to +ve perturbation
+		if 'W' in parameter :
+			self.weights_dict[parameter] = np.copy(pos_perturbed_param)
+		elif 'b' in parameter :
+			self.biases_dict[parameter] = np.copy(pos_perturbed_param)
+		# No code should ever reach here ...
+		else :
+			print('[ERROR] Wrong parameter enquired : ', str(parameter))
+			print('[ERROR] Terminating the code ...')
+			sys.exit()
+		# Get the +ve perturbation loss
+		pred_right = self.forward(x = x)
+		loss_right = self.loss(y_true = y, y_pred = pred_right)
+		# print('[DEBUG] Right Prediction : ', pred_right)
+		# print('[DEBUG] Right Loss : ', loss_right)
+
+		# Set the parameter to -ve perturbation
+		if 'W' in parameter :
+			self.weights_dict[parameter] = np.copy(neg_perturbed_param)
+		elif 'b' in parameter :
+			self.biases_dict[parameter] = np.copy(neg_perturbed_param)
+		# No code should ever reach here ...
+		else :
+			print('[ERROR] Wrong parameter enquired : ', str(parameter))
+			print('[ERROR] Terminating the code ...')
+			sys.exit()
+
+		# Get the +ve perturbation loss
+		pred_left = self.forward(x = x)
+		loss_left = self.loss(y_true = y, y_pred = pred_left)
+		# print('[DEBUG] Left Prediction : ', pred_left)
+		# print('[DEBUG] Left Loss : ', loss_left)
+		
+		# print('[DEBUG] Predictions Identical ? : ', (pred_center == pred_left).all())
+		# print('[DEBUG] Predictions Identical ? : ', (pred_center == pred_right).all())
+		# print('[DEBUG] Predictions Identical ? : ', (pred_left == pred_right).all())
+
+		# Compute the left-sided, right-sided and centered derivative
+		left_deriv = (loss_center - loss_left)*1.0/perturb_amount
+		right_deriv = (loss_right - loss_center)*1.0/perturb_amount
+		center_deriv = (loss_right - loss_left)*1.0/(2.0*perturb_amount)
+
+		# Restore the parametes
+		if 'W' in parameter :
+			self.weights_dict[parameter] = np.copy(current_param)
+		elif 'b' in parameter :
+			self.biases_dict[parameter] = np.copy(current_param)
+		# No code should ever reach here ...
+		else :
+			print('[ERROR] Wrong parameter enquired : ', str(parameter))
+			print('[ERROR] Terminating the code ...')
+			sys.exit()
+
+		# Return!
+		return left_deriv, right_deriv, center_deriv
+
+
+	# Define a methd that computes the parameters of the architecture
+	def GetParameterNumber(self) :
+
+		"""
+		inputs :
+		"""
+
+		"""
+		outputs :
+
+		param_count :
+			The net number of parameters
+		"""
+
+		param_count = 0
+
+		# Process each weight
+		for i in self.weights_dict :
+			a_param_shape = list(self.weights_dict[i].shape)
+			print('[DEBUG] Current Shape : ', a_param_shape)
+			a_param_count = 1
+			for j in a_param_shape :
+				a_param_count *= j
+			param_count += a_param_count
+		# Process each bias
+		for i in self.biases_dict :
+			a_param_shape = list(self.biases_dict[i].shape)
+			print('[DEBUG] Current Shape : ', a_param_shape)
+			a_param_count = 1
+			for j in a_param_shape :
+				a_param_count *= j
+			param_count += a_param_count
+
+		# Return 
+		return param_count
 
 
 	# Override the method to print the neural network
@@ -775,11 +997,54 @@ if __name__ == '__main__' :
 	print('##################################################')
 	print('########## TEST : Train')
 	print('##################################################')
-	num_epochs_ = 300
+	num_epochs_ = 50
 	mnist = utils.dataLoader(batch_size = 5000)
-	model = multiLayerPerceptron(n_hidden = 2, hidden_dims = (500, 300), activation_list = ('ReLU', 'ReLU'))
+	model = multiLayerPerceptron(n_hidden = 2, hidden_dims = (750, 500), activation_list = ('Sigmoid', 'Sigmoid'))
+
+	# Test the parameter count
+	print('##################################################')
+	print('########## TEST : Parameter Count')
+	print('##################################################')
+	print('[DEBUG] Parameter count : ', model.GetParameterNumber())
+
 	model.initialize_weights('Glorot')
 	time_1 = time.time()
-	tr_loss_list, tr_acc_list, val_loss_list, val_acc_list = model.train(data_loader = mnist, eta = 3*1e-2, num_epochs = num_epochs_, is_verbose = False)
+	tr_loss_list, tr_acc_list, val_loss_list, val_acc_list = model.train(data_loader = mnist, eta = 1, num_epochs = num_epochs_, is_verbose = True)
 	time_2 = time.time()
 	print('[DEBUG] Time Per Epoch : ', (time_2 - time_1)/num_epochs_)
+	te_loss, te_acc, te_corr = model.test(data_loader = mnist, split = 'Test', x_def = None, y_def = None, is_verbose = True)
+	print('[DEBUG] Testing Loss\t:\t', te_loss, '\tAccuracy\t:\t', te_acc)
+	te_loss, te_acc, te_corr = model.test(data_loader = mnist, split = 'Train', x_def = None, y_def = None, is_verbose = True)
+	print('[DEBUG] Testing Loss\t:\t', te_loss, '\tAccuracy\t:\t', te_acc)
+
+	# # Test the numerical gradient computation
+	# print('##################################################')
+	# print('########## TEST : Numerical Gradients')
+	# print('##################################################')
+	# mnist = utils.dataLoader(batch_size = 1)
+	# parameter = 'b2'
+	# perturb_loc = (0, 0)
+	# x_batch, y_batch = mnist.GetNextBatch()
+	# left_grad, right_grad, center_grad = model.ComputeNumericalGradients(x = np.transpose( x_batch ), y = y_batch, parameter = parameter, perturb_loc = perturb_loc, perturb_amount = 1e-5)
+	# print('[DEBUG] Left-Sided Gradient : ', left_grad)
+	# print('[DEBUG] Right-Sided Gradient : ', right_grad)
+	# print('[DEBUG] Centered Gradient : ', center_grad)
+	# y_pred = model.forward(x = np.transpose(x_batch))
+	# model.backward(y_true = y_batch) 
+	# if 'W' in parameter :
+	# 	true_grad = model.grad_weights_dict['grad_' + parameter][perturb_loc[0], perturb_loc[1]]
+	# elif 'b' in parameter :
+	# 	true_grad = model.grad_biases_dict['grad_' + parameter][perturb_loc[0], perturb_loc[1]]
+	# print('[DEBUG] True Gradient : ', true_grad)
+
+	# # Test the save and load properties
+	# print('##################################################')
+	# print('########## TEST : Save and Load Weights')
+	# print('##################################################')
+	# model.SaveModel(path = './')
+	# model_new = multiLayerPerceptron(n_hidden = 2, hidden_dims = (500, 300), activation_list = ('ReLU', 'ReLU'))
+	# model_new.LoadModel(path = './')
+	# te_loss, te_acc, te_corr = model_new.test(data_loader = mnist, split = 'Test', x_def = None, y_def = None, is_verbose = True)
+	# print('[DEBUG] Testing Loaded Loss\t:\t', te_loss, '\tAccuracy\t:\t', te_acc)
+	# te_loss, te_acc, te_corr = model_new.test(data_loader = mnist, split = 'Train', x_def = None, y_def = None, is_verbose = True)
+	# print('[DEBUG] Testing Loaded Loss\t:\t', te_loss, '\tAccuracy\t:\t', te_acc)
