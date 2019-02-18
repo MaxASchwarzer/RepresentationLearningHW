@@ -6,28 +6,6 @@ import pickle
 import urllib.request as request
 
 
-# Define a function to download the standard MNIST dataset
-def DownloadStandardMNIST() :
-
-	filename = [ ["training_images","train-images-idx3-ubyte.gz"], ["test_images","t10k-images-idx3-ubyte.gz"], ["training_labels","train-labels-idx1-ubyte.gz"], ["test_labels","t10k-labels-idx1-ubyte.gz"] ]
-	base_url = "http://yann.lecun.com/exdb/mnist/"
-	for name in filename:
-		print("Downloading "+name[1]+"...")
-		request.urlretrieve(base_url+name[1], name[1])
-	print("Download complete.")
-
-	mnist = {}
-	for name in filename[:2]:
-		with gzip.open(name[1], 'rb') as f:
-			mnist[name[0]] = np.frombuffer(f.read(), np.uint8, offset=16).reshape(-1,28*28)
-	for name in filename[-2:]:
-		with gzip.open(name[1], 'rb') as f:
-			mnist[name[0]] = np.frombuffer(f.read(), np.uint8, offset=8)
-	with open("mnist.pkl", 'wb') as f:
-		pickle.dump(mnist,f)
-	print("Save complete.")
-
-
 # Define a class to hold the standard MNIST dataset
 class mnistDataLoader() :
 

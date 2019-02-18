@@ -1,0 +1,4 @@
+
+Hidden_Dimensions	:	(500, 300)	Non_Linearities	:	('ReLU', 'ReLU')	Learning_Rate	:	0.5	Epochs	:	100	Batch	:	5000	Loss	:	0.0726918	Accuracy	:	0.9791
+Hidden_Dimensions	:	(500, 300)	Non_Linearities	:	('ReLU', 'ReLU')	Learning_Rate	:	0.5	Epochs	:	100	Batch	:	5000	Loss	:	0.073899366	Accuracy	:	0.9788
+Hidden_Dimensions	:	(500, 300)	Non_Linearities	:	('ReLU', 'ReLU')	Learning_Rate	:	0.5	Epochs	:	100	Batch	:	5000	Loss	:	0.072065175	Accuracy	:	0.9791

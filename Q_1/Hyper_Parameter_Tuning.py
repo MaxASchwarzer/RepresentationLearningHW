@@ -10,13 +10,19 @@ from Neural_Network import multiLayerPerceptron
 # Psuedo-main
 if __name__ == '__main__' :
 
-	# Grid Search Parameters
-	HIDDEN_DIM_LIST = [(500, 300), (675, 400), (750, 500)]
-	NON_LINEARITY_LIST = [('ReLU', 'ReLU'), ('Sigmoid', 'Sigmoid'), ('Tanh', 'Tanh')]
-	LEARNING_RATE_LIST = [1, 1e-1, 1e-2]
+	# # Grid Search Parameters
+	# HIDDEN_DIM_LIST = [(500, 300), (675, 400), (750, 500)]
+	# NON_LINEARITY_LIST = [('ReLU', 'ReLU'), ('Sigmoid', 'Sigmoid'), ('Tanh', 'Tanh')]
+	# LEARNING_RATE_LIST = [1, 1e-1, 1e-2]
+	# HIDDEN_DIM_LIST = [(500, 300), (675, 400), (750, 500)]
+	# NON_LINEARITY_LIST = [('ReLU', 'ReLU')]
+	# LEARNING_RATE_LIST = [0.5]
+	HIDDEN_DIM_LIST = [(500, 300), (500, 300), (500, 300)]
+	NON_LINEARITY_LIST = [('ReLU', 'ReLU')]
+	LEARNING_RATE_LIST = [0.5]
 
 	# Global Parameters
-	NUM_EPOCHS = 1
+	NUM_EPOCHS = 100
 	BATCH_SIZE = 5000
 	N_HIDDEN = 2
 

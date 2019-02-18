@@ -1,0 +1,414 @@
+####################################################################################################
+[INFO] Initializer :  Zero
+####################################################################################################
+[INFO] The MLP Architecture : 
+Neural Network (
+	Layer(W1 : [500, 784]	,	b1 : [500, 1]	,	ReLU	:	[500, 500])
+	Layer(W2 : [300, 500]	,	b2 : [300, 1]	,	ReLU	:	[300, 300])
+	Layer(W3 : [10, 300]	,	b3 : [10, 1]	,	Softmax	:	[10, 10])
+)
+[DEBUG] Current Shape :  [500, 784]
+[DEBUG] Current Shape :  [300, 500]
+[DEBUG] Current Shape :  [10, 300]
+[DEBUG] Current Shape :  [500, 1]
+[DEBUG] Current Shape :  [300, 1]
+[DEBUG] Current Shape :  [10, 1]
+[INFO] The number of parameters : 
+ 545810
+[INFO] Run :  1
+[INFO] EPOCH	:	0		Loss	:	 2.3025854 		Accuracy	:	 0.09864
+[INFO] EPOCH	:	 1 		Loss	:	 2.302433 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 2 		Loss	:	 2.3022957 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 3 		Loss	:	 2.3021712 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 4 		Loss	:	 2.3020587 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 5 		Loss	:	 2.3019576 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 6 		Loss	:	 2.3018658 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 7 		Loss	:	 2.3017826 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 8 		Loss	:	 2.3017075 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 9 		Loss	:	 2.3016398 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 10 		Loss	:	 2.301579 		Accuracy	:	 0.11356
+[INFO] Run :  2
+[INFO] EPOCH	:	0		Loss	:	 2.3025854 		Accuracy	:	 0.09864
+[INFO] EPOCH	:	 1 		Loss	:	 2.302433 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 2 		Loss	:	 2.3022957 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 3 		Loss	:	 2.3021712 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 4 		Loss	:	 2.3020587 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 5 		Loss	:	 2.3019576 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 6 		Loss	:	 2.3018658 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 7 		Loss	:	 2.3017826 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 8 		Loss	:	 2.3017075 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 9 		Loss	:	 2.3016398 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 10 		Loss	:	 2.301579 		Accuracy	:	 0.11356
+[INFO] Run :  3
+[INFO] EPOCH	:	0		Loss	:	 2.3025854 		Accuracy	:	 0.09864
+[INFO] EPOCH	:	 1 		Loss	:	 2.302433 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 2 		Loss	:	 2.3022957 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 3 		Loss	:	 2.3021712 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 4 		Loss	:	 2.3020587 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 5 		Loss	:	 2.3019576 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 6 		Loss	:	 2.3018658 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 7 		Loss	:	 2.3017826 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 8 		Loss	:	 2.3017075 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 9 		Loss	:	 2.3016398 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 10 		Loss	:	 2.301579 		Accuracy	:	 0.11356
+[INFO] Run :  4
+[INFO] EPOCH	:	0		Loss	:	 2.3025854 		Accuracy	:	 0.09864
+[INFO] EPOCH	:	 1 		Loss	:	 2.302433 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 2 		Loss	:	 2.3022957 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 3 		Loss	:	 2.3021712 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 4 		Loss	:	 2.3020587 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 5 		Loss	:	 2.3019576 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 6 		Loss	:	 2.3018658 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 7 		Loss	:	 2.3017826 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 8 		Loss	:	 2.3017075 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 9 		Loss	:	 2.3016398 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 10 		Loss	:	 2.301579 		Accuracy	:	 0.11356
+[INFO] Run :  5
+[INFO] EPOCH	:	0		Loss	:	 2.3025854 		Accuracy	:	 0.09864
+[INFO] EPOCH	:	 1 		Loss	:	 2.302433 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 2 		Loss	:	 2.3022957 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 3 		Loss	:	 2.3021712 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 4 		Loss	:	 2.3020587 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 5 		Loss	:	 2.3019576 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 6 		Loss	:	 2.3018658 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 7 		Loss	:	 2.3017826 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 8 		Loss	:	 2.3017075 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 9 		Loss	:	 2.3016398 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 10 		Loss	:	 2.301579 		Accuracy	:	 0.11356
+[INFO] Run :  6
+[INFO] EPOCH	:	0		Loss	:	 2.3025854 		Accuracy	:	 0.09864
+[INFO] EPOCH	:	 1 		Loss	:	 2.302433 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 2 		Loss	:	 2.3022957 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 3 		Loss	:	 2.3021712 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 4 		Loss	:	 2.3020587 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 5 		Loss	:	 2.3019576 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 6 		Loss	:	 2.3018658 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 7 		Loss	:	 2.3017826 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 8 		Loss	:	 2.3017075 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 9 		Loss	:	 2.3016398 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 10 		Loss	:	 2.301579 		Accuracy	:	 0.11356
+[INFO] Run :  7
+[INFO] EPOCH	:	0		Loss	:	 2.3025854 		Accuracy	:	 0.09864
+[INFO] EPOCH	:	 1 		Loss	:	 2.302433 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 2 		Loss	:	 2.3022957 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 3 		Loss	:	 2.3021712 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 4 		Loss	:	 2.3020587 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 5 		Loss	:	 2.3019576 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 6 		Loss	:	 2.3018658 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 7 		Loss	:	 2.3017826 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 8 		Loss	:	 2.3017075 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 9 		Loss	:	 2.3016398 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 10 		Loss	:	 2.301579 		Accuracy	:	 0.11356
+[INFO] Run :  8
+[INFO] EPOCH	:	0		Loss	:	 2.3025854 		Accuracy	:	 0.09864
+[INFO] EPOCH	:	 1 		Loss	:	 2.302433 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 2 		Loss	:	 2.3022957 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 3 		Loss	:	 2.3021712 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 4 		Loss	:	 2.3020587 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 5 		Loss	:	 2.3019576 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 6 		Loss	:	 2.3018658 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 7 		Loss	:	 2.3017826 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 8 		Loss	:	 2.3017075 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 9 		Loss	:	 2.3016398 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 10 		Loss	:	 2.301579 		Accuracy	:	 0.11356
+[INFO] Run :  9
+[INFO] EPOCH	:	0		Loss	:	 2.3025854 		Accuracy	:	 0.09864
+[INFO] EPOCH	:	 1 		Loss	:	 2.302433 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 2 		Loss	:	 2.3022957 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 3 		Loss	:	 2.3021712 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 4 		Loss	:	 2.3020587 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 5 		Loss	:	 2.3019576 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 6 		Loss	:	 2.3018658 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 7 		Loss	:	 2.3017826 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 8 		Loss	:	 2.3017075 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 9 		Loss	:	 2.3016398 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 10 		Loss	:	 2.301579 		Accuracy	:	 0.11356
+[INFO] Run :  10
+[INFO] EPOCH	:	0		Loss	:	 2.3025854 		Accuracy	:	 0.09864
+[INFO] EPOCH	:	 1 		Loss	:	 2.302433 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 2 		Loss	:	 2.3022957 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 3 		Loss	:	 2.3021712 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 4 		Loss	:	 2.3020587 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 5 		Loss	:	 2.3019576 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 6 		Loss	:	 2.3018658 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 7 		Loss	:	 2.3017826 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 8 		Loss	:	 2.3017075 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 9 		Loss	:	 2.3016398 		Accuracy	:	 0.11356
+[INFO] EPOCH	:	 10 		Loss	:	 2.301579 		Accuracy	:	 0.11356
+[DEBUG] Shape of Resultant Performance Matrix :  (10, 11)
+####################################################################################################
+[INFO] Initializer :  Normal
+####################################################################################################
+[INFO] The MLP Architecture : 
+Neural Network (
+	Layer(W1 : [500, 784]	,	b1 : [500, 1]	,	ReLU	:	[500, 500])
+	Layer(W2 : [300, 500]	,	b2 : [300, 1]	,	ReLU	:	[300, 300])
+	Layer(W3 : [10, 300]	,	b3 : [10, 1]	,	Softmax	:	[10, 10])
+)
+[DEBUG] Current Shape :  [500, 784]
+[DEBUG] Current Shape :  [300, 500]
+[DEBUG] Current Shape :  [10, 300]
+[DEBUG] Current Shape :  [500, 1]
+[DEBUG] Current Shape :  [300, 1]
+[DEBUG] Current Shape :  [10, 1]
+[INFO] The number of parameters : 
+ 545810
+[INFO] Run :  1
+[INFO] EPOCH	:	0		Loss	:	 20.086582 		Accuracy	:	 0.12618
+[INFO] EPOCH	:	 1 		Loss	:	 10.023869 		Accuracy	:	 0.54994
+[INFO] EPOCH	:	 2 		Loss	:	 6.7909455 		Accuracy	:	 0.68668
+[INFO] EPOCH	:	 3 		Loss	:	 5.842483 		Accuracy	:	 0.72606
+[INFO] EPOCH	:	 4 		Loss	:	 5.335473 		Accuracy	:	 0.74404
+[INFO] EPOCH	:	 5 		Loss	:	 4.961081 		Accuracy	:	 0.75714
+[INFO] EPOCH	:	 6 		Loss	:	 4.7102146 		Accuracy	:	 0.76534
+[INFO] EPOCH	:	 7 		Loss	:	 4.4881964 		Accuracy	:	 0.772
+[INFO] EPOCH	:	 8 		Loss	:	 4.2871947 		Accuracy	:	 0.77608
+[INFO] EPOCH	:	 9 		Loss	:	 4.117406 		Accuracy	:	 0.77986
+[INFO] EPOCH	:	 10 		Loss	:	 3.9825385 		Accuracy	:	 0.78224
+[INFO] Run :  2
+[INFO] EPOCH	:	0		Loss	:	 21.689495 		Accuracy	:	 0.05716
+[INFO] EPOCH	:	 1 		Loss	:	 7.5554605 		Accuracy	:	 0.66132
+[INFO] EPOCH	:	 2 		Loss	:	 5.425735 		Accuracy	:	 0.75302
+[INFO] EPOCH	:	 3 		Loss	:	 4.646649 		Accuracy	:	 0.78688
+[INFO] EPOCH	:	 4 		Loss	:	 4.1558514 		Accuracy	:	 0.807
+[INFO] EPOCH	:	 5 		Loss	:	 3.8099864 		Accuracy	:	 0.82138
+[INFO] EPOCH	:	 6 		Loss	:	 3.5284853 		Accuracy	:	 0.83384
+[INFO] EPOCH	:	 7 		Loss	:	 3.3187735 		Accuracy	:	 0.84208
+[INFO] EPOCH	:	 8 		Loss	:	 3.15106 		Accuracy	:	 0.84888
+[INFO] EPOCH	:	 9 		Loss	:	 3.0121017 		Accuracy	:	 0.85484
+[INFO] EPOCH	:	 10 		Loss	:	 2.8837316 		Accuracy	:	 0.86012
+[INFO] Run :  3
+[INFO] EPOCH	:	0		Loss	:	 20.350073 		Accuracy	:	 0.11454
+[INFO] EPOCH	:	 1 		Loss	:	 9.946109 		Accuracy	:	 0.55434
+[INFO] EPOCH	:	 2 		Loss	:	 6.698191 		Accuracy	:	 0.69
+[INFO] EPOCH	:	 3 		Loss	:	 5.8540487 		Accuracy	:	 0.72604
+[INFO] EPOCH	:	 4 		Loss	:	 5.1155214 		Accuracy	:	 0.75558
+[INFO] EPOCH	:	 5 		Loss	:	 4.7485266 		Accuracy	:	 0.76946
+[INFO] EPOCH	:	 6 		Loss	:	 4.512239 		Accuracy	:	 0.77774
+[INFO] EPOCH	:	 7 		Loss	:	 4.2310762 		Accuracy	:	 0.78908
+[INFO] EPOCH	:	 8 		Loss	:	 4.042882 		Accuracy	:	 0.79694
+[INFO] EPOCH	:	 9 		Loss	:	 3.933665 		Accuracy	:	 0.7976
+[INFO] EPOCH	:	 10 		Loss	:	 3.848176 		Accuracy	:	 0.8001
+[INFO] Run :  4
+[INFO] EPOCH	:	0		Loss	:	 19.943178 		Accuracy	:	 0.13222
+[INFO] EPOCH	:	 1 		Loss	:	 8.414432 		Accuracy	:	 0.62304
+[INFO] EPOCH	:	 2 		Loss	:	 5.8161983 		Accuracy	:	 0.73192
+[INFO] EPOCH	:	 3 		Loss	:	 5.150917 		Accuracy	:	 0.75668
+[INFO] EPOCH	:	 4 		Loss	:	 4.7410455 		Accuracy	:	 0.773
+[INFO] EPOCH	:	 5 		Loss	:	 4.469024 		Accuracy	:	 0.7806
+[INFO] EPOCH	:	 6 		Loss	:	 4.2788553 		Accuracy	:	 0.78416
+[INFO] EPOCH	:	 7 		Loss	:	 4.1192937 		Accuracy	:	 0.78812
+[INFO] EPOCH	:	 8 		Loss	:	 3.9932191 		Accuracy	:	 0.78922
+[INFO] EPOCH	:	 9 		Loss	:	 3.875605 		Accuracy	:	 0.78894
+[INFO] EPOCH	:	 10 		Loss	:	 3.7516608 		Accuracy	:	 0.78916
+[INFO] Run :  5
+[INFO] EPOCH	:	0		Loss	:	 21.078554 		Accuracy	:	 0.08314
+[INFO] EPOCH	:	 1 		Loss	:	 9.740279 		Accuracy	:	 0.56406
+[INFO] EPOCH	:	 2 		Loss	:	 6.362034 		Accuracy	:	 0.70466
+[INFO] EPOCH	:	 3 		Loss	:	 5.562599 		Accuracy	:	 0.73536
+[INFO] EPOCH	:	 4 		Loss	:	 5.1510153 		Accuracy	:	 0.7473
+[INFO] EPOCH	:	 5 		Loss	:	 4.89681 		Accuracy	:	 0.7514
+[INFO] EPOCH	:	 6 		Loss	:	 4.710821 		Accuracy	:	 0.75024
+[INFO] EPOCH	:	 7 		Loss	:	 4.5418086 		Accuracy	:	 0.74546
+[INFO] EPOCH	:	 8 		Loss	:	 4.3720207 		Accuracy	:	 0.7384
+[INFO] EPOCH	:	 9 		Loss	:	 4.2211537 		Accuracy	:	 0.72628
+[INFO] EPOCH	:	 10 		Loss	:	 4.075517 		Accuracy	:	 0.71124
+[INFO] Run :  6
+[INFO] EPOCH	:	0		Loss	:	 20.439459 		Accuracy	:	 0.11092
+[INFO] EPOCH	:	 1 		Loss	:	 8.538773 		Accuracy	:	 0.61388
+[INFO] EPOCH	:	 2 		Loss	:	 6.1547623 		Accuracy	:	 0.7086
+[INFO] EPOCH	:	 3 		Loss	:	 5.4657364 		Accuracy	:	 0.73282
+[INFO] EPOCH	:	 4 		Loss	:	 5.0870624 		Accuracy	:	 0.74308
+[INFO] EPOCH	:	 5 		Loss	:	 4.8466363 		Accuracy	:	 0.7467
+[INFO] EPOCH	:	 6 		Loss	:	 4.64788 		Accuracy	:	 0.74624
+[INFO] EPOCH	:	 7 		Loss	:	 4.4747267 		Accuracy	:	 0.74274
+[INFO] EPOCH	:	 8 		Loss	:	 4.306595 		Accuracy	:	 0.73564
+[INFO] EPOCH	:	 9 		Loss	:	 4.126307 		Accuracy	:	 0.72492
+[INFO] EPOCH	:	 10 		Loss	:	 3.9170754 		Accuracy	:	 0.70984
+[INFO] Run :  7
+[INFO] EPOCH	:	0		Loss	:	 21.08719 		Accuracy	:	 0.08262
+[INFO] EPOCH	:	 1 		Loss	:	 8.7365265 		Accuracy	:	 0.6008
+[INFO] EPOCH	:	 2 		Loss	:	 6.807503 		Accuracy	:	 0.67364
+[INFO] EPOCH	:	 3 		Loss	:	 6.2211556 		Accuracy	:	 0.68234
+[INFO] EPOCH	:	 4 		Loss	:	 5.77685 		Accuracy	:	 0.67334
+[INFO] EPOCH	:	 5 		Loss	:	 5.2584505 		Accuracy	:	 0.65664
+[INFO] EPOCH	:	 6 		Loss	:	 4.7269964 		Accuracy	:	 0.63846
+[INFO] EPOCH	:	 7 		Loss	:	 4.2171755 		Accuracy	:	 0.61034
+[INFO] EPOCH	:	 8 		Loss	:	 3.7785838 		Accuracy	:	 0.5856
+[INFO] EPOCH	:	 9 		Loss	:	 3.4215672 		Accuracy	:	 0.56148
+[INFO] EPOCH	:	 10 		Loss	:	 3.138738 		Accuracy	:	 0.54024
+[INFO] Run :  8
+[INFO] EPOCH	:	0		Loss	:	 20.34344 		Accuracy	:	 0.11518
+[INFO] EPOCH	:	 1 		Loss	:	 8.962297 		Accuracy	:	 0.59602
+[INFO] EPOCH	:	 2 		Loss	:	 6.7129207 		Accuracy	:	 0.68634
+[INFO] EPOCH	:	 3 		Loss	:	 6.0581827 		Accuracy	:	 0.70992
+[INFO] EPOCH	:	 4 		Loss	:	 5.603124 		Accuracy	:	 0.7225
+[INFO] EPOCH	:	 5 		Loss	:	 5.302559 		Accuracy	:	 0.727
+[INFO] EPOCH	:	 6 		Loss	:	 5.049604 		Accuracy	:	 0.72698
+[INFO] EPOCH	:	 7 		Loss	:	 4.8682795 		Accuracy	:	 0.72184
+[INFO] EPOCH	:	 8 		Loss	:	 4.631182 		Accuracy	:	 0.71456
+[INFO] EPOCH	:	 9 		Loss	:	 4.3632536 		Accuracy	:	 0.70476
+[INFO] EPOCH	:	 10 		Loss	:	 4.0604715 		Accuracy	:	 0.68748
+[INFO] Run :  9
+[INFO] EPOCH	:	0		Loss	:	 21.333128 		Accuracy	:	 0.07216
+[INFO] EPOCH	:	 1 		Loss	:	 13.538521 		Accuracy	:	 0.39752
+[INFO] EPOCH	:	 2 		Loss	:	 7.957272 		Accuracy	:	 0.58188
+[INFO] EPOCH	:	 3 		Loss	:	 6.2733912 		Accuracy	:	 0.54994
+[INFO] EPOCH	:	 4 		Loss	:	 4.6107373 		Accuracy	:	 0.4975
+[INFO] EPOCH	:	 5 		Loss	:	 3.6640568 		Accuracy	:	 0.45278
+[INFO] EPOCH	:	 6 		Loss	:	 3.1453094 		Accuracy	:	 0.42086
+[INFO] EPOCH	:	 7 		Loss	:	 2.8419025 		Accuracy	:	 0.4017
+[INFO] EPOCH	:	 8 		Loss	:	 2.652182 		Accuracy	:	 0.38884
+[INFO] EPOCH	:	 9 		Loss	:	 2.528049 		Accuracy	:	 0.3769
+[INFO] EPOCH	:	 10 		Loss	:	 2.4335115 		Accuracy	:	 0.36904
+[INFO] Run :  10
+[INFO] EPOCH	:	0		Loss	:	 20.956072 		Accuracy	:	 0.08894
+[INFO] EPOCH	:	 1 		Loss	:	 9.352987 		Accuracy	:	 0.57674
+[INFO] EPOCH	:	 2 		Loss	:	 7.1047506 		Accuracy	:	 0.6496
+[INFO] EPOCH	:	 3 		Loss	:	 6.3781905 		Accuracy	:	 0.62996
+[INFO] EPOCH	:	 4 		Loss	:	 5.422702 		Accuracy	:	 0.60058
+[INFO] EPOCH	:	 5 		Loss	:	 4.5067434 		Accuracy	:	 0.5616
+[INFO] EPOCH	:	 6 		Loss	:	 3.8381882 		Accuracy	:	 0.52048
+[INFO] EPOCH	:	 7 		Loss	:	 3.3905594 		Accuracy	:	 0.48894
+[INFO] EPOCH	:	 8 		Loss	:	 3.0737326 		Accuracy	:	 0.4638
+[INFO] EPOCH	:	 9 		Loss	:	 2.8536544 		Accuracy	:	 0.44326
+[INFO] EPOCH	:	 10 		Loss	:	 2.692993 		Accuracy	:	 0.42888
+[DEBUG] Shape of Resultant Performance Matrix :  (10, 11)
+####################################################################################################
+[INFO] Initializer :  Glorot
+####################################################################################################
+[INFO] The MLP Architecture : 
+Neural Network (
+	Layer(W1 : [500, 784]	,	b1 : [500, 1]	,	ReLU	:	[500, 500])
+	Layer(W2 : [300, 500]	,	b2 : [300, 1]	,	ReLU	:	[300, 300])
+	Layer(W3 : [10, 300]	,	b3 : [10, 1]	,	Softmax	:	[10, 10])
+)
+[DEBUG] Current Shape :  [500, 784]
+[DEBUG] Current Shape :  [300, 500]
+[DEBUG] Current Shape :  [10, 300]
+[DEBUG] Current Shape :  [500, 1]
+[DEBUG] Current Shape :  [300, 1]
+[DEBUG] Current Shape :  [10, 1]
+[INFO] The number of parameters : 
+ 545810
+[INFO] Run :  1
+[INFO] EPOCH	:	0		Loss	:	 2.3803203 		Accuracy	:	 0.05398
+[INFO] EPOCH	:	 1 		Loss	:	 1.9966613 		Accuracy	:	 0.54708
+[INFO] EPOCH	:	 2 		Loss	:	 1.6264633 		Accuracy	:	 0.70712
+[INFO] EPOCH	:	 3 		Loss	:	 1.2836821 		Accuracy	:	 0.76366
+[INFO] EPOCH	:	 4 		Loss	:	 1.0291055 		Accuracy	:	 0.7979
+[INFO] EPOCH	:	 5 		Loss	:	 0.86049414 		Accuracy	:	 0.81832
+[INFO] EPOCH	:	 6 		Loss	:	 0.7486582 		Accuracy	:	 0.83308
+[INFO] EPOCH	:	 7 		Loss	:	 0.67098904 		Accuracy	:	 0.84366
+[INFO] EPOCH	:	 8 		Loss	:	 0.61428124 		Accuracy	:	 0.8522
+[INFO] EPOCH	:	 9 		Loss	:	 0.57108694 		Accuracy	:	 0.8599
+[INFO] EPOCH	:	 10 		Loss	:	 0.53704447 		Accuracy	:	 0.86528
+[INFO] Run :  2
+[INFO] EPOCH	:	0		Loss	:	 2.3435924 		Accuracy	:	 0.08662
+[INFO] EPOCH	:	 1 		Loss	:	 2.0176523 		Accuracy	:	 0.56036
+[INFO] EPOCH	:	 2 		Loss	:	 1.6858697 		Accuracy	:	 0.70546
+[INFO] EPOCH	:	 3 		Loss	:	 1.3574524 		Accuracy	:	 0.75176
+[INFO] EPOCH	:	 4 		Loss	:	 1.0956954 		Accuracy	:	 0.78654
+[INFO] EPOCH	:	 5 		Loss	:	 0.9127113 		Accuracy	:	 0.80932
+[INFO] EPOCH	:	 6 		Loss	:	 0.78753763 		Accuracy	:	 0.82494
+[INFO] EPOCH	:	 7 		Loss	:	 0.6995077 		Accuracy	:	 0.83844
+[INFO] EPOCH	:	 8 		Loss	:	 0.6352151 		Accuracy	:	 0.84894
+[INFO] EPOCH	:	 9 		Loss	:	 0.58645713 		Accuracy	:	 0.85692
+[INFO] EPOCH	:	 10 		Loss	:	 0.54828984 		Accuracy	:	 0.86406
+[INFO] Run :  3
+[INFO] EPOCH	:	0		Loss	:	 2.3456445 		Accuracy	:	 0.0724
+[INFO] EPOCH	:	 1 		Loss	:	 1.944084 		Accuracy	:	 0.57912
+[INFO] EPOCH	:	 2 		Loss	:	 1.5786358 		Accuracy	:	 0.72054
+[INFO] EPOCH	:	 3 		Loss	:	 1.2519095 		Accuracy	:	 0.7758
+[INFO] EPOCH	:	 4 		Loss	:	 1.0095862 		Accuracy	:	 0.81056
+[INFO] EPOCH	:	 5 		Loss	:	 0.84560484 		Accuracy	:	 0.8312
+[INFO] EPOCH	:	 6 		Loss	:	 0.734525 		Accuracy	:	 0.84466
+[INFO] EPOCH	:	 7 		Loss	:	 0.6565699 		Accuracy	:	 0.85456
+[INFO] EPOCH	:	 8 		Loss	:	 0.59960264 		Accuracy	:	 0.86162
+[INFO] EPOCH	:	 9 		Loss	:	 0.5563971 		Accuracy	:	 0.86814
+[INFO] EPOCH	:	 10 		Loss	:	 0.52258795 		Accuracy	:	 0.87272
+[INFO] Run :  4
+[INFO] EPOCH	:	0		Loss	:	 2.34475 		Accuracy	:	 0.09462
+[INFO] EPOCH	:	 1 		Loss	:	 1.9469672 		Accuracy	:	 0.57818
+[INFO] EPOCH	:	 2 		Loss	:	 1.5881683 		Accuracy	:	 0.71544
+[INFO] EPOCH	:	 3 		Loss	:	 1.2628056 		Accuracy	:	 0.77652
+[INFO] EPOCH	:	 4 		Loss	:	 1.0185871 		Accuracy	:	 0.80824
+[INFO] EPOCH	:	 5 		Loss	:	 0.8532557 		Accuracy	:	 0.82768
+[INFO] EPOCH	:	 6 		Loss	:	 0.74187016 		Accuracy	:	 0.84166
+[INFO] EPOCH	:	 7 		Loss	:	 0.6640672 		Accuracy	:	 0.85096
+[INFO] EPOCH	:	 8 		Loss	:	 0.6072357 		Accuracy	:	 0.8593
+[INFO] EPOCH	:	 9 		Loss	:	 0.56399435 		Accuracy	:	 0.86486
+[INFO] EPOCH	:	 10 		Loss	:	 0.52998435 		Accuracy	:	 0.87078
+[INFO] Run :  5
+[INFO] EPOCH	:	0		Loss	:	 2.3348343 		Accuracy	:	 0.1052
+[INFO] EPOCH	:	 1 		Loss	:	 1.9191908 		Accuracy	:	 0.5853
+[INFO] EPOCH	:	 2 		Loss	:	 1.5447963 		Accuracy	:	 0.7208
+[INFO] EPOCH	:	 3 		Loss	:	 1.2173728 		Accuracy	:	 0.77936
+[INFO] EPOCH	:	 4 		Loss	:	 0.9825858 		Accuracy	:	 0.80906
+[INFO] EPOCH	:	 5 		Loss	:	 0.8264189 		Accuracy	:	 0.82904
+[INFO] EPOCH	:	 6 		Loss	:	 0.720821 		Accuracy	:	 0.84428
+[INFO] EPOCH	:	 7 		Loss	:	 0.64628506 		Accuracy	:	 0.8544
+[INFO] EPOCH	:	 8 		Loss	:	 0.59135467 		Accuracy	:	 0.86366
+[INFO] EPOCH	:	 9 		Loss	:	 0.5493493 		Accuracy	:	 0.86998
+[INFO] EPOCH	:	 10 		Loss	:	 0.5162863 		Accuracy	:	 0.87508
+[INFO] Run :  6
+[INFO] EPOCH	:	0		Loss	:	 2.334027 		Accuracy	:	 0.10372
+[INFO] EPOCH	:	 1 		Loss	:	 1.964472 		Accuracy	:	 0.56418
+[INFO] EPOCH	:	 2 		Loss	:	 1.5986705 		Accuracy	:	 0.6978
+[INFO] EPOCH	:	 3 		Loss	:	 1.2664249 		Accuracy	:	 0.76794
+[INFO] EPOCH	:	 4 		Loss	:	 1.019865 		Accuracy	:	 0.80476
+[INFO] EPOCH	:	 5 		Loss	:	 0.8541536 		Accuracy	:	 0.8269
+[INFO] EPOCH	:	 6 		Loss	:	 0.7427503 		Accuracy	:	 0.84108
+[INFO] EPOCH	:	 7 		Loss	:	 0.6648189 		Accuracy	:	 0.85112
+[INFO] EPOCH	:	 8 		Loss	:	 0.6077191 		Accuracy	:	 0.8594
+[INFO] EPOCH	:	 9 		Loss	:	 0.56424874 		Accuracy	:	 0.86554
+[INFO] EPOCH	:	 10 		Loss	:	 0.53004676 		Accuracy	:	 0.87098
+[INFO] Run :  7
+[INFO] EPOCH	:	0		Loss	:	 2.3209863 		Accuracy	:	 0.06688
+[INFO] EPOCH	:	 1 		Loss	:	 1.9067414 		Accuracy	:	 0.59174
+[INFO] EPOCH	:	 2 		Loss	:	 1.5207797 		Accuracy	:	 0.73136
+[INFO] EPOCH	:	 3 		Loss	:	 1.1902572 		Accuracy	:	 0.7831
+[INFO] EPOCH	:	 4 		Loss	:	 0.9585597 		Accuracy	:	 0.8117
+[INFO] EPOCH	:	 5 		Loss	:	 0.80788606 		Accuracy	:	 0.83068
+[INFO] EPOCH	:	 6 		Loss	:	 0.70767117 		Accuracy	:	 0.84334
+[INFO] EPOCH	:	 7 		Loss	:	 0.6375529 		Accuracy	:	 0.85218
+[INFO] EPOCH	:	 8 		Loss	:	 0.58613545 		Accuracy	:	 0.86018
+[INFO] EPOCH	:	 9 		Loss	:	 0.546925 		Accuracy	:	 0.86654
+[INFO] EPOCH	:	 10 		Loss	:	 0.5160351 		Accuracy	:	 0.87146
+[INFO] Run :  8
+[INFO] EPOCH	:	0		Loss	:	 2.328748 		Accuracy	:	 0.1351
+[INFO] EPOCH	:	 1 		Loss	:	 1.9513288 		Accuracy	:	 0.58114
+[INFO] EPOCH	:	 2 		Loss	:	 1.5927643 		Accuracy	:	 0.703
+[INFO] EPOCH	:	 3 		Loss	:	 1.2705392 		Accuracy	:	 0.75756
+[INFO] EPOCH	:	 4 		Loss	:	 1.0296235 		Accuracy	:	 0.79746
+[INFO] EPOCH	:	 5 		Loss	:	 0.8635932 		Accuracy	:	 0.8229
+[INFO] EPOCH	:	 6 		Loss	:	 0.74991757 		Accuracy	:	 0.83814
+[INFO] EPOCH	:	 7 		Loss	:	 0.66980696 		Accuracy	:	 0.84856
+[INFO] EPOCH	:	 8 		Loss	:	 0.61110693 		Accuracy	:	 0.85694
+[INFO] EPOCH	:	 9 		Loss	:	 0.5664743 		Accuracy	:	 0.86384
+[INFO] EPOCH	:	 10 		Loss	:	 0.5314391 		Accuracy	:	 0.86904
+[INFO] Run :  9
+[INFO] EPOCH	:	0		Loss	:	 2.3550863 		Accuracy	:	 0.07992
+[INFO] EPOCH	:	 1 		Loss	:	 1.9315927 		Accuracy	:	 0.57626
+[INFO] EPOCH	:	 2 		Loss	:	 1.5586034 		Accuracy	:	 0.72058
+[INFO] EPOCH	:	 3 		Loss	:	 1.2298856 		Accuracy	:	 0.77208
+[INFO] EPOCH	:	 4 		Loss	:	 0.987579 		Accuracy	:	 0.80792
+[INFO] EPOCH	:	 5 		Loss	:	 0.82522464 		Accuracy	:	 0.8308
+[INFO] EPOCH	:	 6 		Loss	:	 0.71688634 		Accuracy	:	 0.84514
+[INFO] EPOCH	:	 7 		Loss	:	 0.6416541 		Accuracy	:	 0.85556
+[INFO] EPOCH	:	 8 		Loss	:	 0.5869728 		Accuracy	:	 0.86304
+[INFO] EPOCH	:	 9 		Loss	:	 0.54552627 		Accuracy	:	 0.86942
+[INFO] EPOCH	:	 10 		Loss	:	 0.5130052 		Accuracy	:	 0.87456
+[INFO] Run :  10
+[INFO] EPOCH	:	0		Loss	:	 2.298096 		Accuracy	:	 0.12012
+[INFO] EPOCH	:	 1 		Loss	:	 1.9089966 		Accuracy	:	 0.60288
+[INFO] EPOCH	:	 2 		Loss	:	 1.5400456 		Accuracy	:	 0.72822
+[INFO] EPOCH	:	 3 		Loss	:	 1.2177073 		Accuracy	:	 0.77948
+[INFO] EPOCH	:	 4 		Loss	:	 0.98487663 		Accuracy	:	 0.8078
+[INFO] EPOCH	:	 5 		Loss	:	 0.830275 		Accuracy	:	 0.82564
+[INFO] EPOCH	:	 6 		Loss	:	 0.726561 		Accuracy	:	 0.83872
+[INFO] EPOCH	:	 7 		Loss	:	 0.65372205 		Accuracy	:	 0.84888
+[INFO] EPOCH	:	 8 		Loss	:	 0.6001502 		Accuracy	:	 0.85718
+[INFO] EPOCH	:	 9 		Loss	:	 0.55909497 		Accuracy	:	 0.86364
+[INFO] EPOCH	:	 10 		Loss	:	 0.5265707 		Accuracy	:	 0.8694
+[DEBUG] Shape of Resultant Performance Matrix :  (10, 11)
