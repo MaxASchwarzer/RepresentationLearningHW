@@ -13,7 +13,7 @@ np.random.seed(47)
 T.manual_seed(48)
 
 # Global variables
-EPOCHS = 40
+EPOCHS = 10
 
 if T.cuda.is_available():
     device="cuda"
@@ -21,7 +21,7 @@ else:
     device="cpu"
 
 # Data loaders
-mnist = utils.dataLoader(batch_size=64)
+mnist = utils.dataLoader(batch_size=32)
 
 
 class CNN(nn.Module):
